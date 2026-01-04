@@ -156,7 +156,7 @@ const setComputerMoves = () => {
   const playerTwoMoveThreeType = MOVE_TYPE_ARRAY[(Math.floor(Math.random() * (MOVE_TYPE_ARRAY.length)))];
   const playerTwoMoveOneValue = (Math.floor(Math.random() * 99)+1);  
   const playerTwoMoveTwoValue = (Math.floor(Math.random() * (99 - playerTwoMoveOneValue))+1);  
-  const playerTwoMoveThreeValue = (Math.floor(Math.random() * (99 - playerTwoMoveOneValue - playerTwoMoveTwoValue))+1);  
+  const playerTwoMoveThreeValue = ((99 - playerTwoMoveOneValue - playerTwoMoveTwoValue));  
   setPlayerMoves(
     'Player Two', 
     playerTwoMoveOneType, 
@@ -166,4 +166,6 @@ const setComputerMoves = () => {
     playerTwoMoveThreeType, 
     playerTwoMoveThreeValue
   );
+
+
 };
