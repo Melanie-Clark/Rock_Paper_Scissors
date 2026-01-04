@@ -55,4 +55,19 @@ const getRoundWinner = (round) => {
   } else {
     return 'Player Two';
   }
-}
+};
+
+const getGameWinner = () => {
+  const rounds = [1,2,3];
+  const playerOneWins = rounds.map(getRoundWinner).filter(winner => winner === 'Player One').length;
+  const playerTwoWins = rounds.map(getRoundWinner).filter(winner => winner === 'Player Two').length;
+
+  if (playerOneWins > playerTwoWins) {
+    return 'Player One';
+  } else if (playerTwoWins > playerOneWins) {
+    return 'Player Two';
+  } else {
+    return 'Tie';
+  }
+};
+
