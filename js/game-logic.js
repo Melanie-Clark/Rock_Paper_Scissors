@@ -36,3 +36,23 @@ const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoV
     playerTwoMoveThreeValue = moveThreeValue;
   }
 };
+
+const getRoundWinner = (round) => {
+  if (playerOneMove.type === playerTwoMove.type) {
+    if (playerOneMove.value > playerTwoMove.value) {
+      return 'Player One';
+    } else if (playerTwoMove.value > playerOneMove.value) {
+      return 'Player Two';
+    } else {
+      return 'Tie';
+    }
+  } else if (
+    (playerOneMove.type === 'rock' && playerTwoMove.type === 'scissors') ||
+    (playerOneMove.type === 'scissors' && playerTwoMove.type === 'paper') ||
+    (playerOneMove.type === 'paper' && playerTwoMove.type === 'rock')
+  ) {
+    return 'Player One';
+  } else {
+    return 'Player Two';
+  }
+}
