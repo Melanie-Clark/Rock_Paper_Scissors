@@ -1,7 +1,5 @@
   let playerMode, currentPlayer;
 
-  
-
   function startGame(playerType) {
     if (!playerType) {
       return;
