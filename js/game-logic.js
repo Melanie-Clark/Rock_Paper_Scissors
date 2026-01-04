@@ -70,13 +70,13 @@ const getRoundWinner = (round) => {
   };
 
   if (playerOneMove.type === playerTwoMove.type) {
-    console.log(playerOneMove, playerOneMove.type);
+    // console.log(playerOneMove, playerOneMove.type);
     if (playerOneMove.value > playerTwoMove.value) {
       return 'Player One';
     } else if (playerTwoMove.value > playerOneMove.value) {
       return 'Player Two';
     } else {
-      console.log('The Round is a Tie');
+      // console.log('The Round is a Tie');
       return 'Tie';
     }
   } else if (
@@ -84,10 +84,10 @@ const getRoundWinner = (round) => {
     (playerOneMove.type === 'scissors' && playerTwoMove.type === 'paper') ||
     (playerOneMove.type === 'paper' && playerTwoMove.type === 'rock')
   ) {
-    console.log('Player One Wins the Round');
+    // console.log('Player One Wins the Round');
     return 'Player One';
   } else {
-    console.log('Player Two Wins the Round');
+    // console.log('Player Two Wins the Round');
     return 'Player Two';
   }
 };
@@ -133,14 +133,19 @@ const getGameWinner = () => {
   const playerOneWins = rounds.map(getRoundWinner).filter(winner => winner === 'Player One').length;
   const playerTwoWins = rounds.map(getRoundWinner).filter(winner => winner === 'Player Two').length;
 
+  // Edge case
+  if (!playerOneWins || !playerTwoWins) {
+    return null;
+  };
+
   if (playerOneWins > playerTwoWins) {
-    console.log('Player One Wins the Game');
+    // console.log('Player One Wins the Game');
     return 'Player One';
   } else if (playerTwoWins > playerOneWins) {
-    console.log('Player Two Wins the Game');
+    // console.log('Player Two Wins the Game');
     return 'Player Two';
   } else {
-    console.log('The Game is a Tie');
+    // console.log('The Game is a Tie');
     return 'Tie';
   }
 };
