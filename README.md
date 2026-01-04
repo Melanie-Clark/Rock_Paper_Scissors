@@ -1,4 +1,4 @@
-# Rock Paper Scissors x99
+# Codecademy: Rock Paper Scissors x99
 
 ## Project Overview
 
