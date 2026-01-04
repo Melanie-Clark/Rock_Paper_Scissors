@@ -60,6 +60,15 @@ const getRoundWinner = (round) => {
   const playerOneMove = getPlayerMove('Player One', round);
   const playerTwoMove = getPlayerMove('Player Two', round);
 
+  // Edge cases
+  if (typeof round !== 'number' || round < 1 || round > 3) {
+    return null;
+  };
+
+  if (!playerOneMove.type || !playerOneMove.value || !playerTwoMove.type || !playerTwoMove.value) {
+    return null;
+  };
+
   if (playerOneMove.type === playerTwoMove.type) {
     console.log(playerOneMove, playerOneMove.type);
     if (playerOneMove.value > playerTwoMove.value) {
