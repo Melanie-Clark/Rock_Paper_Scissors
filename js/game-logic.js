@@ -35,5 +35,4 @@ const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoV
     playerTwoMoveThreeType = moveThreeType;
     playerTwoMoveThreeValue = moveThreeValue;
   }
-  return 0;  
 };
