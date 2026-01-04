@@ -48,6 +48,7 @@ const getRoundWinner = (round) => {
     } else if (playerTwoMove.value > playerOneMove.value) {
       return 'Player Two';
     } else {
+      console.log('The Round is a Tie');
       return 'Tie';
     }
   } else if (
@@ -55,47 +56,49 @@ const getRoundWinner = (round) => {
     (playerOneMove.type === 'scissors' && playerTwoMove.type === 'paper') ||
     (playerOneMove.type === 'paper' && playerTwoMove.type === 'rock')
   ) {
+    console.log('Player One Wins the Round');
     return 'Player One';
   } else {
+    console.log('Player Two Wins the Round');
     return 'Player Two';
   }
 };
+
 function getPlayerMove(player, round) {
-    const move = {};
-    if (player === 'Player One') {
-      switch (round) {
-        case 1:
-          move.type = playerOneMoveOneType;
-          move.value = playerOneMoveOneValue;
-          break;
-        case 2:
-          move.type = playerOneMoveTwoType;
-          move.value = playerOneMoveTwoValue;
-          break;
-        case 3:
-          move.type = playerOneMoveThreeType;
-          move.value = playerOneMoveThreeValue;
-          break;
-      }
-    } else {
-      switch (round) {
-        case 1:
-          move.type = playerTwoMoveOneType;
-          move.value = playerTwoMoveOneValue;
-          break;
-        case 2:
-          move.type = playerTwoMoveTwoType;
-          move.value = playerTwoMoveTwoValue;
-          break;
-        case 3:
-          move.type = playerTwoMoveThreeType;
-          move.value = playerTwoMoveThreeValue;
-          break;
-      }
+  const move = {};
+  if (player === 'Player One') {
+    switch (round) {
+      case 1:
+        move.type = playerOneMoveOneType;
+        move.value = playerOneMoveOneValue;
+        break;
+      case 2:
+        move.type = playerOneMoveTwoType;
+        move.value = playerOneMoveTwoValue;
+        break;
+      case 3:
+        move.type = playerOneMoveThreeType;
+        move.value = playerOneMoveThreeValue;
+        break;
     }
-    console.log(move);
-    return move;
-  };
+  } else {
+    switch (round) {
+      case 1:
+        move.type = playerTwoMoveOneType;
+        move.value = playerTwoMoveOneValue;
+        break;
+      case 2:
+        move.type = playerTwoMoveTwoType;
+        move.value = playerTwoMoveTwoValue;
+        break;
+      case 3:
+        move.type = playerTwoMoveThreeType;
+        move.value = playerTwoMoveThreeValue;
+        break;
+    }
+  }
+  return move;
+};
 
 const getGameWinner = () => {
   const rounds = [1,2,3];
@@ -103,11 +106,31 @@ const getGameWinner = () => {
   const playerTwoWins = rounds.map(getRoundWinner).filter(winner => winner === 'Player Two').length;
 
   if (playerOneWins > playerTwoWins) {
+    console.log('Player One Wins the Game');
     return 'Player One';
   } else if (playerTwoWins > playerOneWins) {
+    console.log('Player Two Wins the Game');
     return 'Player Two';
   } else {
+    console.log('The Game is a Tie');
     return 'Tie';
   }
 };
 
+const setComputerMoves = () => {
+  const playerTwoMoveOneType = MOVE_TYPES[(Math.floor(Math.random() * (MOVE_TYPES.length)))];
+  const playerTwoMoveTwoType = MOVE_TYPES[(Math.floor(Math.random() * (MOVE_TYPES.length)))];
+  const playerTwoMoveThreeType = MOVE_TYPES[(Math.floor(Math.random() * (MOVE_TYPES.length)))];
+  const playerTwoMoveOneValue = (Math.floor(Math.random() * 99)+1);  
+  const playerTwoMoveTwoValue = (Math.floor(Math.random() * 99)+1);  
+  const playerTwoMoveThreeValue = (Math.floor(Math.random() * 99)+1);  
+  setPlayerMoves(
+    'Player Two', 
+    playerTwoMoveOneType, 
+    playerTwoMoveOneValue, 
+    playerTwoMoveTwoType, 
+    playerTwoMoveTwoValue, 
+    playerTwoMoveThreeType, 
+    playerTwoMoveThreeValue
+  );
+};
