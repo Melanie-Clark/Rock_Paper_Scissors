@@ -1,3 +1,5 @@
+const MOVE_TYPE_ARRAY = ['rock', 'paper', 'scissors'];
+
 // ----Player One Moves----
 let playerOneMoveOneType;
 let playerOneMoveOneValue;
@@ -20,6 +22,23 @@ let playerTwoMoveThreeValue;
 
 // ----Set Moves Function----
 const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoValue, moveThreeType, moveThreeValue) => {
+  // Edge cases
+  if (!player || !moveOneType || !moveOneValue || !moveTwoType || !moveTwoValue || !moveThreeType || !moveThreeValue) {
+    return;
+  };
+
+  if (!MOVE_TYPE_ARRAY.includes(moveOneType) || !MOVE_TYPE_ARRAY.includes(moveTwoType) || !MOVE_TYPE_ARRAY.includes(moveThreeType)) {
+    return;
+  };
+
+  if ((moveOneValue < 1 || moveOneValue > 99) || (moveTwoValue < 1 || moveTwoValue > 99) || (moveThreeValue < 1 || moveThreeValue > 99)) {
+    return;
+  }
+
+  if ((moveOneValue + moveTwoValue + moveThreeValue) > 99) {
+    return;
+  }
+
   if (player === 'Player One') {
     playerOneMoveOneType = moveOneType;
     playerOneMoveOneValue = moveOneValue;
@@ -34,7 +53,7 @@ const setPlayerMoves = (player, moveOneType, moveOneValue, moveTwoType, moveTwoV
     playerTwoMoveTwoValue = moveTwoValue;
     playerTwoMoveThreeType = moveThreeType;
     playerTwoMoveThreeValue = moveThreeValue;
-  }
+  };
 };
 
 const getRoundWinner = (round) => {
@@ -118,12 +137,12 @@ const getGameWinner = () => {
 };
 
 const setComputerMoves = () => {
-  const playerTwoMoveOneType = MOVE_TYPES[(Math.floor(Math.random() * (MOVE_TYPES.length)))];
-  const playerTwoMoveTwoType = MOVE_TYPES[(Math.floor(Math.random() * (MOVE_TYPES.length)))];
-  const playerTwoMoveThreeType = MOVE_TYPES[(Math.floor(Math.random() * (MOVE_TYPES.length)))];
+  const playerTwoMoveOneType = MOVE_TYPE_ARRAY[(Math.floor(Math.random() * (MOVE_TYPE_ARRAY.length)))];
+  const playerTwoMoveTwoType = MOVE_TYPE_ARRAY[(Math.floor(Math.random() * (MOVE_TYPE_ARRAY.length)))];
+  const playerTwoMoveThreeType = MOVE_TYPE_ARRAY[(Math.floor(Math.random() * (MOVE_TYPE_ARRAY.length)))];
   const playerTwoMoveOneValue = (Math.floor(Math.random() * 99)+1);  
-  const playerTwoMoveTwoValue = (Math.floor(Math.random() * 99)+1);  
-  const playerTwoMoveThreeValue = (Math.floor(Math.random() * 99)+1);  
+  const playerTwoMoveTwoValue = (Math.floor(Math.random() * (99 - playerTwoMoveOneValue))+1);  
+  const playerTwoMoveThreeValue = (Math.floor(Math.random() * (99 - playerTwoMoveOneValue - playerTwoMoveTwoValue))+1);  
   setPlayerMoves(
     'Player Two', 
     playerTwoMoveOneType, 
